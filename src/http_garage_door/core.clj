@@ -1,6 +1,12 @@
 (ns http-garage-door.core
   (:require [clojure.java.shell :refer [sh]]))
 
+(defn initialize
+  []
+  (sh "gpio" "write" "7" "1")
+  (sh "gpio" "mode" "7" "out")
+  (sh "gpio" "mode" "23" "in"))
+
 (defn get-status
   []
   (let [status (:out (sh "gpio" "read" "23"))]

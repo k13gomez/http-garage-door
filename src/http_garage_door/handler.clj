@@ -3,6 +3,8 @@
             [ring.util.http-response :refer :all]
             [http-garage-door.core :refer :all]))
 
+(initialize)
+
 (def app
   (api
     {:swagger
@@ -16,11 +18,11 @@
       :tags ["api"]
 
       (GET "/status" []
-        :return {:result String}
+        :return String
         :summary "returns the status of the garage door"
-        (ok {:result (get-status)}))
+        (ok (get-status)))
 
       (POST "/toggle" []
-        :return {:result String}
+        :return String
         :summary "toggle the garage door open/closed"
-        (ok {:result (toggle-status)})))))
+        (ok (toggle-status))))))
