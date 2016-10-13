@@ -5,13 +5,13 @@
   []
   (sh "gpio" "write" "7" "1")
   (sh "gpio" "mode" "7" "out")
-  (sh "gpio" "mode" "23" "in"))
+  (sh "gpio" "mode" "24" "up"))
 
 (defn get-status
   []
-  (let [status (:out (sh "gpio" "read" "23"))]
+  (let [status (:out (sh "gpio" "read" "24"))]
     (if (= status "1\n")
-      "closed" "open")))
+      "open" "closed")))
 
 (defn predict-status
   []
